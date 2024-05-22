@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin | Customer</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/select2/css/select2.min.css') }}">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/jqvmap/jqvmap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/adminlte.min.css') }}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.css') }}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.css') }}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='bxl-airbnb.svg') }}" type="image/svg+xml">
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+  {% block body %}
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="{{ url_for('static', filename='img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+      
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-envelope mr-2"></i> Email messages
+            <span class="float-right text-muted text-sm">Online</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-whatsapp"></i> Whattsapp Messages
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-facebook"></i> Facebook Messages
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{{ url_for('static', filename='img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light"><strong>Role Modern Hotel</strong></span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{ url_for('static', filename='img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{ session['name'] }}</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="{{url_for('dashboard')}}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('dashboard')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard v1</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('Index') }}" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Rooms
+                <span class="right badge badge-primary">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('customer') }}" class="nav-link active">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Customers
+                <span class="right badge badge-success">Add</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('checkin') }}" class="nav-link">
+              <i class="nav-icon fas fa-indent"></i>
+              <p>
+                Check-In
+                <span class="right badge badge-info">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('expired_reservation') }}" class="nav-link">
+              <i class="nav-icon fas fa-outdent"></i>
+              <p>
+                Check-Out
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('payment') }}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Payments
+                <span class="right badge badge-success">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('get_invoices') }}" class="nav-link">
+              <i class="nav-icon fa fa-print"></i>
+              <p>
+                Invoices
+                <span class="right badge badge-info">New</span>
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="{{ url_for('transactions') }}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Reports
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-dark"></span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url_for('transactions') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Transactions</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url_for('reservation_report') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reservations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url_for('reserved_rooms') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reserved Rooms</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url_for('unreserved_rooms') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Available Rooms</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url_for('mycustomer') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Customers</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('systemadmin') }}" class="nav-link">
+              <i class="nav-icon fa fa-server"></i>
+              <p>
+                Users
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url_for('systemadmin') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>System Admins</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url_for('roomadmin') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Room Admins</p>
+                </a>
+              </li>
+             
+              
+              
+            </ul>
+            <li class="nav-item">
+                <a href="{{ url_for('profile') }}" class="nav-link">
+                  <i class="nav-icon fas fa-cogs"></i>
+                  <p>
+                    Settings
+                    <span class="right badge badge-info">New</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url_for('logout') }}" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Logout
+                    <span class="right badge badge-light">New</span>
+                  </p>
+                </a>
+              </li>
+          </li>
+          
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  
+
+
+            
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Customer</li>
+            </ol>
+          </div>
+          <div class="col-sm-12">
+            <h1 class="m-0"><strong>Customer Details</strong></h1><br>
+            <div class="callout callout-info">
+              <h5><i class="fas fa-info"></i> Note:</h5>
+              Welcome to our Hotel MIS Customer Page. You can effortlessly add new customers, update details and ensure accurate records.Navigate to the designated section to perform the operations.
+            </div>
+          </div><!-- /.col -->
+          <!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <br>
+
+
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <h3>Customer Listing</h3>
+             <br>
+            <div class="float-right mb-2 col-md-2">
+              
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Customer</button> 
+            </div>
+          </div>
+        </div>
+        {%with messages = get_flashed_messages()%}
+
+    {%if messages%}
+
+    {% for message in messages %}
+
+    <div class="alert alert-success alert-dismissable" role="alert">
+
+     <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+
+         <span aria-hidden="true">&times;</span>
+
+     </button>
+        {{message}}
+
+
+    </div>
+
+
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+    <div class="card-header">
+      <h3 class="card-title">Customers</h3>
+
+      <div class="card-tools">
+        <div class="input-group input-group-sm" style="width: 150px;">
+          <select name="id" class="select2" style="width: 100%;">
+            {% for row in mydata %}
+            <option value="{{ row.0 }}">{{row.0}}</option>
+        {% endfor %}
+        </select>
+        </div>
+      </div>
+    </div>
+
+
+
+
+            <table class="table table-striped">
+
+
+                <tr>
+              <th>ID</th>
+              <th>Customer-Number</th>
+              <th>Names</th>
+              <th>Identification</th>
+              <th>ID-Number</th>
+              <th>Phone</th>
+              <th>City</th>
+              <th>Action</th>
+
+
+          </tr>
+
+
+
+
+
+                {% for row in students %}
+                <tr>
+                    <td>{{row.0}}</td>
+                    <td>{{row.1}}</td>
+                    <td>{{row.2}}</td>
+                    <td>{{row.3}}</td>
+                    <td>{{row.4}}</td>
+                    <td>{{row.5}}</td>
+                    <td>{{row.7}}</td>
+                    <td>
+
+
+               <a href="/update/{{row.0}}" class="btn btn-warning" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
+                
+
+                    </td>
+
+                </tr>
+
+                <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+
+
+   <div class="modal-dialog">
+
+
+      <div class="modal-content">
+
+
+         <div class="modal-header">
+
+
+            
+
+
+            <h4 class="modal-title">Update Information</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+         </div>
+
+
+         <div class="modal-body">
+
+
+            <form action="{{ url_for('customerupdate') }}" method="POST">
+
+
+               <div class="form-group">
+
+
+                  <label>FullName:</label>
+                   <input type="hidden"  name="id" value="{{row.0}}">
+
+                  <input type="text" class="form-control" name="name" value="{{row.2}}">
+
+
+               </div>
+
+
+
+               <div class="form-group">
+
+
+                  <label>Phone:</label>
+
+                  <input type="text" class="form-control" name="phone" value="{{row.5}}">
+
+
+               </div>
+
+
+               <div class="form-group">
+
+
+                  <label>Email:</label>
+
+                  <input type="text" class="form-control" name="email" value="{{row.6}}">
+
+
+               </div>
+               <div class="form-group">
+
+
+                <label>City:</label>
+
+                <input type="text" class="form-control" name="city" value="{{row.7}}">
+
+
+             </div>
+
+
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="sbumit">Update</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+
+</div>
+
+
+                {% endfor  %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+<!-- Modal -->
+
+
+<div id="myModal" class="modal fade" role="dialog">
+
+
+   <div class="modal-dialog">
+
+
+      <div class="modal-content">
+
+
+         <div class="modal-header">
+
+
+            
+
+
+            <h4 class="modal-title">Please Insert Data</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+         </div>
+
+
+         <div class="modal-body">
+
+
+            <form action="{{ url_for('insertcustomer') }}" method="POST" enctype="multipart/form-data">
+
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Customer Name</label>
+                    <input type="text" name="name" required class="form-control" id="name" placeholder="Enter customer name">
+                  </div>
+    
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Identification</label>
+                    <select name="id" id="id" class="form-control select2bs4" style="width: 100%;">
+                        <option selected="selected">National ID</option>
+                        <option>Passport</option>
+                        <option>Military ID</option>
+                        <option>Others</option>
+                      </select>
+                    
+                  </div>
+    
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">ID-Number</label>
+                    <input type="text" required class="form-control" name="idnumber" id="idnumber" placeholder="Enter the id number">
+                  </div>
+    
+                  <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" name="phone" required class="form-control" id="phone" placeholder="Enter customer phone number">
+                    
+                  </div>
+    
+               
+    
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">City</label>
+                    <input type="text" class="form-control" name="city" id="city" placeholder="Enter City">
+                  </div>
+
+
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="submit">Save Customer</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+
+</div>
+
+
+
+
+  
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+
+        
+      </section>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2024 <a href="#">Felix Kipkirui Langat</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.0
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ url_for('static', filename='plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- ChartJS -->
+<script src="{{ url_for('static', filename='plugins/chart.js/Chart.min.js') }}"></script>
+<!-- Sparkline -->
+<script src="{{ url_for('static', filename='plugins/sparklines/sparkline.js') }}"></script>
+<!-- JQVMap -->
+<script src="{{ url_for('static', filename='plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ url_for('static', filename='plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+<!-- daterangepicker -->
+<script src="{{ url_for('static', filename='plugins/moment/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- Summernote -->
+<script src="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.js') }}"></script>
+<!-- overlayScrollbars -->
+<script src="{{ url_for('static', filename='plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ url_for('static', filename='js/adminlte.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ url_for('static', filename='js/demo.js') }}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ url_for('static', filename='js/pages/dashboard.js') }}"></script>
+<!-- SweetAlert2 -->
+<script src="{{ url_for('static', filename='plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static', filename='plugins/select2/js/select2.full.min.js') }}"></script>
+<script>
+  $(function () {
+    $('.select2').select2()
+  });
+</script>
+
+
+
+</body>
+</html>

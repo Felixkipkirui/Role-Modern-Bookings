@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Invoice Print</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/adminlte.min.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='bxl-airbnb.svg') }}" type="image/svg+xml">
+</head>
+<body>
+<div class="wrapper">
+  <!-- Main content -->
+  <section class="invoice">
+    <!-- title row -->
+    <div class="row">
+      <div class="col-12">
+        <h4>
+          <i class="fas fa-globe"></i> Role Modern Hotel.
+          <small class="float-right">Date: {{data.18}}</small>
+        </h4>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- info row -->
+   
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
+        From
+        <address>
+          <strong>Role Modern Hotel, Inc.</strong><br>
+          P.O. Box 118-20400 BOMET<br>
+          Silibwet, Bomet County<br>
+          Phone: +25472522021<br>
+          Email: info@rolemodern.com
+        </address>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        To
+        <address>
+          <strong>{{data.1}}</strong><br>
+          N/A<br>
+          N/A<br>
+          Phone: N/A<br>
+          Email: N/A
+        </address>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        <b>Invoice: {{data.2}}</b><br>
+        <br>
+        <b>Order ID: </b>{{data.10}}<br>
+        <b>Payment Due: </b>{{data.18}}<br>
+        <b>Account:</b> N/A
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Table row -->
+    <div class="row">
+      <div class="col-12 table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Room ID</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Occupants</th>
+            <th>Stage</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{data.3}}</td>
+            <td>{{data.4}}</td>
+            <td>{{data.5}}</td>
+            <td>{{data.7}}</td>
+            <td>{{data.8}}</td>
+          </tr>
+          <tr>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <!-- accepted payments column -->
+      <div class="col-6">
+        <p class="lead">Payment Methods:</p>
+        <img src="../../dist/img/credit/visa.png" alt="Visa">
+        <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
+        <img src="../../dist/img/credit/american-express.png" alt="American Express">
+        <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
+
+        <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
+          plugg
+          dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+        </p>
+      </div>
+      <!-- /.col -->
+      <div class="col-6">
+        <p class="lead">Amount Due {{data.12}}</p>
+
+        <div class="table-responsive">
+          <table class="table">
+            <tr>
+              <th style="width:50%">Recieved:</th>
+              <td>{{data.13}}</td>
+            </tr>
+            <tr>
+              <th>Balance</th>
+              <td>{{data.14}}</td>
+            </tr>
+            <tr>
+              <th>Method:</th>
+              <td>{{data.15}}</td>
+            </tr>
+            <tr>
+              <th>Description:</th>
+              <td>{{data.16}}</td>
+            </tr>
+            <tr>
+              <th>RecievedBy:</th>
+              <td>{{data.17}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- ./wrapper -->
+<!-- Page specific script -->
+<script>
+  window.addEventListener("load", window.print());
+</script>
+</body>
+</html>
